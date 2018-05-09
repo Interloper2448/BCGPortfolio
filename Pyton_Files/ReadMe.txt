@@ -1,0 +1,1 @@
+The purpose of this directory is to hold various python files that I am working on or finished with.

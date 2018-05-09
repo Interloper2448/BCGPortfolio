@@ -1,0 +1,1 @@
+The purpose of this directory is to hold various java programs that I am working on or finished with.

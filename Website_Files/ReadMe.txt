@@ -1,0 +1,1 @@
+The purpose of this directory is to hold various websites that I am working on or finished with.
