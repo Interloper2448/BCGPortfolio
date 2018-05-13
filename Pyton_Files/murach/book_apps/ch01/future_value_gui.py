@@ -5,6 +5,8 @@ from tkinter import ttk
 import locale
 
 # a function that computes the future value
+
+
 def calculate_future_value(monthly_investment,
                            yearly_interest_rate,
                            years):
@@ -13,17 +15,19 @@ def calculate_future_value(monthly_investment,
     monthly_interest_rate = yearly_interest_rate / 12 / 100
     months = years * 12
 
-    #calculate the future value
+    # calculate the future value
     future_value = 0
     for i in range(months):
         future_value = future_value + monthly_investment
         monthly_interest_amount = future_value * monthly_interest_rate
         future_value = future_value + monthly_interest_amount
 
-    #return the future value
+    # return the future value
     return future_value
 
 # called when the Calculate button is clicked
+
+
 def on_calculate_clicked(monthly_investment_entry,
                          yearly_interest_rate_entry,
                          years_entry,
@@ -42,12 +46,14 @@ def on_calculate_clicked(monthly_investment_entry,
                                years), grouping=True))
 
 # main fuction, called when the program starts
-def main():    
+
+
+def main():
     # set the locale for use in currency formatting
     result = locale.setlocale(locale.LC_ALL, '')
     if result == 'C':
         locale.setlocale(locale.LC_ALL, 'en_US')
-    
+
     # create the Tk application root window
     root = Tk()
     root.title("Future Value Calculator")
@@ -72,7 +78,8 @@ def main():
                                             future_value_label)
 
     # create the labels and text entry widgets, and add them to the grid
-    ttk.Label(frame, text="Monthly Investment:").grid(column=0, row=0, sticky=E)
+    ttk.Label(frame, text="Monthly Investment:").grid(
+        column=0, row=0, sticky=E)
     monthly_investment_field = ttk.Entry(frame, width=25,
                                          textvariable=monthly_investment_entry)
     monthly_investment_field.grid(column=1, row=0)
@@ -113,7 +120,7 @@ def main():
     # start the Tk event handling loop
     root.mainloop()
 
+
 # if we were started as the main module, call the main function
 if __name__ == "__main__":
     main()
-
