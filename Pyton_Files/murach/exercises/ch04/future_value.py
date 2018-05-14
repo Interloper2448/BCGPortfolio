@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-        
+import validation as v
+
+
 def calculate_future_value(monthly_investment, yearly_interest, years):
     # convert yearly values to monthly values
     monthly_interest_rate = yearly_interest / 12 / 100
@@ -7,20 +9,24 @@ def calculate_future_value(monthly_investment, yearly_interest, years):
 
     # calculate future value
     future_value = 0.0
-    for i in range(0, months):
+    
+    for _ in range(0, months):
         future_value += monthly_investment
         monthly_interest = future_value * monthly_interest_rate
         future_value += monthly_interest
 
     return future_value
 
+
 def main():
     choice = "y"
     while choice.lower() == "y":
         # get input from the user
-        monthly_investment = float(input("Enter monthly investment:\t"))
-        yearly_interest_rate = float(input("Enter yearly interest rate:\t"))
-        years = int(input("Enter number of years:\t\t"))
+        monthly_investment = v.filterFloat(
+            "Enter monthly investment:\t", 0, 1000)
+        yearly_interest_rate = v.filterFloat(
+            "Enter yearly interest rate:\t", 0, 15)
+        years = v.filterInt("Enter number of years:\t\t", 0, 50)
 
         # get and display future value
         future_value = calculate_future_value(
@@ -34,6 +40,7 @@ def main():
         print()
 
     print("Bye!")
-    
+
+
 if __name__ == "__main__":
     main()
