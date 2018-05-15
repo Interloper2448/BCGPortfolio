@@ -1,0 +1,30 @@
+
+def truthTable(inp1, inp2):
+    print("*******************************************************")
+    result = inp1 == inp2
+    print("***   ", inp1, "== ", inp2, "Result:", result, "   ***")
+    result = inp1 != inp2
+    print("***   ", inp1, "!= ", inp2, "Result:", result, "   ***")
+    result = inp1 >= inp2
+    print("***   ", inp1, ">= ", inp2, "Result:", result, "   ***")
+    result = inp1 > inp2
+    print("***   ", inp1, " > ", inp2, "Result:", result, "   ***")
+    result = inp1 <= inp2
+    print("***   ", inp1, "<= ", inp2, "Result:", result, "   ***")
+    result = inp1 < inp2
+    print("***   ", inp1, " < ", inp2, "Result:", result, "   ***")
+    result = inp1 and inp2
+    print("***   ", inp1, "and", inp2, "Result:", result, "   ***")
+    result = inp1 or inp2
+    print("***   ", inp1, "or ", inp2, "Result:", result, "   ***")
+    print("*******************************************************")
+
+
+def main():
+    truthTable(True, False)
+    truthTable(False, True)
+    # truthTable("Apple","APPLE")
+
+
+if __name__ == "__main__":
+    main()
