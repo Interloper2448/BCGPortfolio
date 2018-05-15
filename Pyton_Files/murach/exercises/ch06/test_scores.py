@@ -1,40 +1,52 @@
 #!/usr/bin/env python3
 
 def display_welcome():
+    print("**************************************")
     print("The Test Scores program")
     print("Enter 'x' to exit")
     print("")
 
 def get_scores():
+    scores = []
     score_total = 0
-    counter = 0
     while True:
         score = input("Enter test score: ")
         if score == "x":
-            return  score_total, counter
+            return scores
         else:
             score = int(score)
             if score >= 0 and score <= 100:
+                scores.append(score)
                 score_total += score
-                counter += 1 
             else:
                 print("Test score must be from 0 through 100. " +
                       "Score discarded. Try again.")
 
-def process_scores(score_total, count):
+def process_scores(scores):
     # calculate average score
-    average = score_total / count
+    average = sum(scores) / len(scores)
+    median = 0
+    if(len(scores)%2==0):
+        n1 = scores[int(len(scores)/2-1)]
+        n2 = scores[int(len(scores)/2)]
+        median = round((n1 + n2)/2,2)
+    else:
+        median = scores[int(len(scores)/2)]
+    # times
                 
     # format and display the result
     print()
-    print("Score total:       ", score_total)
-    print("Number of Scores:  ", count)
-    print("Average Score:     ", average)
+    print("Total:\t\t\t", sum(scores))
+    print("Number of Scores:\t", len(scores))
+    print("Average Score:\t\t", average)
+    print("Low Score:\t\t",min(scores))
+    print("High Score:\t\t", max(scores))
+    print("Median Score:\t\t",median)
 
 def main():
     display_welcome()
-    score_total, count = get_scores()
-    process_scores(score_total, count)
+    scores = get_scores()
+    process_scores(scores)
     print("")
     print("Bye!")
 
