@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# Skipped
 # display a welcome message
 print("The Test Scores application")
 print()
