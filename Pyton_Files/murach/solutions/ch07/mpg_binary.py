@@ -1,9 +1,16 @@
-#!/usr/bin/env python3
-
+from os import path
 import pickle
 
 # a file in the current directory
-FILENAME = "trips.bin"
+
+
+def getDir(file):
+    myFile = []
+    myFile = path.split(__file__)
+    return myFile[0] + "\\" + file
+
+
+FILENAME = getDir("trips.bin")
 
 def write_trips(trips):
     with open(FILENAME, "wb") as file:

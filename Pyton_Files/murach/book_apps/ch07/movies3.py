@@ -1,15 +1,25 @@
 import pickle
+from os import path
 
-FILENAME = "movies.bin"
+def getDir(file):
+    myFile = []
+    myFile = path.split(__file__)
+    return myFile[0] + "\\" + file
+
+
+FILENAME = getDir("movies.bin")
+
 
 def write_movies(movies):
     with open(FILENAME, "wb") as file:
         pickle.dump(movies, file)
 
+
 def read_movies():
     with open(FILENAME, "rb") as file:
         movies = pickle.load(file)
     return movies
+
 
 def list_movies():
     movies = read_movies()
@@ -17,6 +27,7 @@ def list_movies():
         movie = movies[i]
         print(str(i+1) + ". " + movie[0] + " (" + str(movie[1]) + ")")
     print()
+
 
 def add_movie():
     name = input("Name: ")
@@ -29,13 +40,15 @@ def add_movie():
     write_movies(movie_list)
     print(name + " was added.\n")
 
+
 def delete_movie():
     index = int(input("Number: "))
     movie_list = read_movies()
     movie = movie_list.pop(index - 1)
     write_movies(movie_list)
     print(movie[0] + " was deleted.\n")
-        
+
+
 def display_menu():
     print("The Movie List program")
     print()
@@ -46,21 +59,23 @@ def display_menu():
     print("exit - Exit program")
     print()
 
+
 def main():
     display_menu()
-    while True:        
+    while True:
         command = input("Command: ")
         if command.lower() == "list":
-            list_movies()     
+            list_movies()
         elif command.lower() == "add":
             add_movie()
         elif command.lower() == "del":
-            delete_movie()       
+            delete_movie()
         elif command.lower() == "exit":
             break
         else:
             print("Not a valid command. Please try again.\n")
     print("Bye!")
+
 
 if __name__ == "__main__":
     main()

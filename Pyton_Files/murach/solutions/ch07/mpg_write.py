@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 
+from os import path
 import csv
 
 # a file in the current directory
-FILENAME = "trips.csv"
+
+
+def getDir(file):
+    myFile = []
+    myFile = path.split(__file__)
+    return myFile[0] + "\\" + file
+
+FILENAME = getDir("trips.csv")
 
 def write_trips(trips):
     with open(FILENAME, "w", newline="") as file:
