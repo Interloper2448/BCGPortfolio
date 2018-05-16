@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import locale as lc
 from decimal import Decimal
 from decimal import ROUND_HALF_UP
 
@@ -28,16 +29,23 @@ while choice == "y":
     discount = discount.quantize(Decimal("1.00"), ROUND_HALF_UP)                                
     subtotal = order_total - discount
     tax_percent = Decimal(".05")
+    shipping_tax_percent = Decimal(".085")
+    shipping_tax = subtotal * shipping_tax_percent
+    shipping_tax = shipping_tax.quantize(Decimal("1.00"), ROUND_HALF_UP)
     sales_tax = subtotal * tax_percent
     sales_tax = sales_tax.quantize(Decimal("1.00"), ROUND_HALF_UP)                                 
-    invoice_total = subtotal + sales_tax
+    invoice_total = subtotal + sales_tax + shipping_tax
 
+    lc.setlocale(lc.LC_ALL, "us")
     # display the results
-    print("Order total:      {:10,}".format(order_total))
-    print("Discount amount:  {:10,}".format(discount))
-    print("Subtotal:         {:10,}".format(subtotal))
-    print("Sales tax:        {:10,}".format(sales_tax))
-    print("Invoice total:    {:10,}".format(invoice_total))
+    print("Order total:      {:>15}".format(
+        lc.currency(order_total, grouping=True)))
+    print("Discount amount:  {:>15,}".format(discount))
+    print("Subtotal:         {:>15,}".format(subtotal))
+    print("Shipping tax:     {:>15,}".format(shipping_tax))
+    print("Sales tax:        {:>15,}".format(sales_tax))
+    print("Invoice total:    {:>15}".format(
+        lc.currency(invoice_total, grouping=True)))
     print()
 
     choice = input("Continue? (y/n): ")    
