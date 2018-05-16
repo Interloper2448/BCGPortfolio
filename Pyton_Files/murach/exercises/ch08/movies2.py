@@ -1,7 +1,15 @@
 import csv
 import sys
+from os import path
 
-FILENAME = "movies.csv"
+def getDir(file):
+    myFile = []
+    myFile = path.split(__file__)
+    return myFile[0] + "\\" + file
+
+FILENAME = getDir("movies_test.csv")
+
+
 
 def exit_program():
     print("Terminating program.")
@@ -16,8 +24,17 @@ def read_movies():
                 movies.append(row)
         return movies
     except FileNotFoundError as e:
-        print("Could not find " + FILENAME + " file.")
-        exit_program()
+        # print("Could not find " + FILENAME + " file.")
+        # exit_program()
+        movie = ["The MoleMan",2050]
+        movies = []
+        movies.append(movie)
+        
+        with open(FILENAME, "w", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerows(movies)
+            
+        return movies
     except Exception as e:
         print(type(e), e)
         exit_program()
@@ -27,6 +44,10 @@ def write_movies(movies):
         with open(FILENAME, "w", newline="") as file:
             writer = csv.writer(file)
             writer.writerows(movies)
+        # raise OSError
+    except OSError as e:
+        print(type(e), e)
+        exit_program()
     except Exception as e:
         print(type(e), e)
         exit_program()
@@ -34,18 +55,24 @@ def write_movies(movies):
 def list_movies(movies):
     for i in range(0, len(movies)):
         movie = movies[i]
-        print(str(i+1) + ". " + movie[0] + " (" + movie[1] + ")")
+        print(str(i+1) + ". ",movie[0]," (",movie[1],")",sep="")
     print()
     
 def add_movie(movies):
     name = input("Name: ")
-    year = input("Year: ")
-    movie = []
-    movie.append(name)
-    movie.append(year)
-    movies.append(movie)
-    write_movies(movies)
-    print(name + " was added.\n")
+    while True:
+        try:
+            year= int(input("Year: "))
+        except ValueError:
+            print("Invalid integer. Please try again.")
+            continue
+        movie = []
+        movie.append(name)
+        movie.append(year)
+        movies.append(movie)
+        write_movies(movies)
+        print(name + " was added.\n")
+        break
 
 def delete_movie(movies):
     while True:
