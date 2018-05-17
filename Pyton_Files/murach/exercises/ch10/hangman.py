@@ -1,28 +1,58 @@
 import wordlist
 
 # Get a random word from the word list
+
+
 def get_word():
     word = wordlist.get_random_word()
     return word.upper()
 
 # Add spaces between letters
+
+
 def add_spaces(word):
     word_with_spaces = " ".join(word)
     return word_with_spaces
 
+
+def draw_hangman(tries):
+    print("___\n",
+          " " * 3 + "|\n",
+          " " * 3 + "^\n",
+          draw_body(tries),
+          sep="")
+
+
+def draw_body(tries):
+    body = ""
+    hangman = ["  <", "o", ">\n",
+               "  \\", "|", "/\n",
+               "   |\n",
+               "   |\n",
+               "  /", " \\\n",
+               ]
+    for part in range(0, tries):
+        body += hangman[part]
+    return body
+
 # Draw the display
+
+
 def draw_screen(num_wrong, num_guesses, guessed_letters, displayed_word):
     print("-" * 79)
-    print("Word:", add_spaces(displayed_word),
+    print(draw_hangman(num_wrong),
+          "Word:", add_spaces(displayed_word),
           "  Guesses:", num_guesses,
           "  Wrong:", num_wrong,
           "  Tried:", add_spaces(guessed_letters))
 
 # Get next letter from user
+
+
 def get_letter(guessed_letters):
     while True:
         guess = input("Enter a letter: ").strip().upper()
-    
+
         # Make sure the user enters a letter and only one letter
         if guess == "" or len(guess) > 1:
             print("Invalid entry. " +
@@ -36,14 +66,16 @@ def get_letter(guessed_letters):
             return guess
 
 # The input/process/draw technique is common in game programming
+
+
 def play_game():
     word = get_word()
-    
+
     word_length = len(word)
     remaining_letters = word_length
     displayed_word = "_" * word_length
 
-    num_wrong = 0               
+    num_wrong = 0
     num_guesses = 0
     guessed_letters = ""
 
@@ -52,7 +84,7 @@ def play_game():
     while num_wrong < 10 and remaining_letters > 0:
         guess = get_letter(guessed_letters)
         guessed_letters += guess
-        
+
         pos = word.find(guess, 0)
         if pos != -1:
             displayed_word = ""
@@ -62,7 +94,7 @@ def play_game():
                     displayed_word += char
                     remaining_letters -= 1
                 else:
-                    displayed_word += "_"              
+                    displayed_word += "_"
         else:
             num_wrong += 1
 
@@ -72,20 +104,24 @@ def play_game():
 
     print("-" * 79)
     if remaining_letters == 0:
-        print("Congratulations! You got it in", 
-               num_guesses, "guesses.")   
-    else:    
+        print("Congratulations! You got it in",
+              num_guesses, "guesses.")
+    else:
         print("Sorry, you lost.")
         print("The word was:", word)
 
+
 def main():
+    print("-" * 79)
     print("Play the H A N G M A N game")
+    draw_hangman(10)
     while True:
         play_game()
         print()
         again = input("Do you want to play again (y/n)?: ").lower()
         if again != "y":
             break
+
 
 if __name__ == "__main__":
     main()
