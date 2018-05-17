@@ -10,6 +10,13 @@ def show_book(book_catalog):
     else:
         print("Sorry, " + title + " doesn't exist in the catalog.")
 
+def list_books(book_catalog):
+    for title in book_catalog:
+        print("Title:    " + title)
+        print("Author:   ",book_catalog[title]["author"])
+        print("Pub year: ",book_catalog[title]["pubyear"])
+        print()
+
 def add_edit_book(book_catalog, mode):
     title = input("Title: ")
     if mode == "add" and title in book_catalog:
@@ -45,6 +52,7 @@ def display_menu():
     print("The Book Catalog program")
     print()
     print("COMMAND MENU")
+    print("list - list out all books")
     print("show - Show book info")
     print("add -  Add book")
     print("edit - Edit book")
@@ -67,7 +75,9 @@ def main():
     while True:
         print()
         command = input("Command: ").lower()
-        if command == "show":
+        if command == "list":
+            list_books(book_catalog)
+        elif command == "show":
             show_book(book_catalog)
         elif command == "add":
             add_edit_book(book_catalog, mode="add")
