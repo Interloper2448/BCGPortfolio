@@ -9,13 +9,13 @@ def main():
     # start timer
     input("Press Enter to start...")
     start_time = datetime.now()
-    print("Start time:", start_time)
+    print("Start time:", start_time.strftime("%I:%M:%S:%f"))
     print()
     
     # stop timer
     input("Press Enter to stop...")    
     stop_time = datetime.now()
-    print("Stop time: ", stop_time)
+    print("Stop time: ", stop_time.strftime("%I:%M:%S:%f"))
     print()
 
     # calculate elapsed time
