@@ -1,30 +1,31 @@
 from dice import Dice, Die
 
+
 def main():
     print("The Dice Roller program")
-    print(" _____ \n" + \
-          "|o   o|\n" + \
-          "|o   o|\n" + \
+    print(" _____ \n" +
+          "|o   o|\n" +
+          "|o   o|\n" +
           "|o___o|")
-    print(" _____ \n" + \
-          "|o   o|\n" + \
-          "|  o  |\n" + \
+    print(" _____ \n" +
+          "|o   o|\n" +
+          "|  o  |\n" +
           "|o___o|")
-    print(" _____ \n" + \
-          "|o   o|\n" + \
-          "|     |\n" + \
-          "|o___o|")          
-    print(" _____ \n" + \
-          "|o    |\n" + \
-          "|  o  |\n" + \
+    print(" _____ \n" +
+          "|o   o|\n" +
+          "|     |\n" +
+          "|o___o|")
+    print(" _____ \n" +
+          "|o    |\n" +
+          "|  o  |\n" +
           "|____o|")
-    print(" _____ \n" + \
-          "|o    |\n" + \
-          "|     |\n" + \
-          "|____o|")    
-    print(" _____ \n" + \
-          "|     |\n" + \
-          "|  o  |\n" + \
+    print(" _____ \n" +
+          "|o    |\n" +
+          "|     |\n" +
+          "|____o|")
+    print(" _____ \n" +
+          "|     |\n" +
+          "|  o  |\n" +
           "|_____|")
     print()
 
@@ -37,18 +38,24 @@ def main():
         die = Die()
         dice.addDie(die)
 
-    while True:        
+    while True:
         # roll the dice
         dice.rollAll()
-        print("YOUR ROLL: ", end="")
+      #   print("YOUR ROLL: ", end="")
+      #   for die in dice.list:
+      #       print(die.value, end=" ")
+      #   print()
         for die in dice.list:
-            print(die.value, end=" ")
+            print(die.image)
+            print()
+        print("TOTAL:", Dice.getTotal(dice))
         print("\n")
 
         choice = input("Roll again? (y/n): ")
         if choice != "y":
             print("Bye!")
             break
+
 
 if __name__ == "__main__":
     main()
