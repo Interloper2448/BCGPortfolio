@@ -1,6 +1,7 @@
 from objects import Book, Author, Authors
 
 def main():
+    print("\n\r******************************")
     print("The Authors Tester program")
     print()
     
@@ -18,7 +19,14 @@ def main():
 
     print("BOOK DATA - MUTLIPLE LINES")
     print("Title:   ", book.title)
-    print("Authors: ",  book.authors)
+    if authors.count > 1:
+        print("Authors: ",  book.authors)
+    else:
+        print("Author: ",  book.authors)
+
+    print("\n\rAUTHORS")
+    for author in authors:
+        print(author)
         
 if __name__ == "__main__":
     main()
