@@ -1,9 +1,16 @@
 import csv
 from objects import Task, TaskList
+from os import path
+
+
+def getDir(file):
+    myFile = []
+    myFile = path.split(__file__)
+    return myFile[0] + "\\" + file
 
 def get_task_list_names():
     task_lists = []
-    with open("task_lists.txt") as file:
+    with open(getDir("task_lists.txt")) as file:
         for line in file:
             line = line.replace("\n", "")
             task_lists.append(line)
@@ -19,13 +26,13 @@ def write_task_list(name, tasks):
         rows.append(row)
 
     # write list of lists to CSV file
-    filename = "task_list_" + name.lower() + ".csv"    
+    filename = getDir("task_list_" + name.lower() + ".csv")
     with open(filename, "w", newline="") as file:
         writer = csv.writer(file)
         writer.writerows(rows)
 
 def get_task_list(name):
-    filename = "task_list_" + name.lower() + ".csv"
+    filename = getDir("task_list_" + name.lower() + ".csv")
     tasks = TaskList(name)
     with open(filename, newline="") as file:
         reader = csv.reader(file)

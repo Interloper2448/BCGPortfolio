@@ -98,7 +98,7 @@ def display_menu():
     print("add -  Add a movie")
     print("del -  Delete a movie")
     print("exit - Exit program")
-    print()    
+    print()
 
 def main():
     display_menu()
